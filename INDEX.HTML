@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Tech Giants Knowledge Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f7;
+      margin: 0;
+      padding: 0 1rem 2rem;
+    }
+    header {
+      background: linear-gradient(to right, #1e3a8a, #2563eb);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .quiz-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    .question-block {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 1.5rem;
+    }
+    .question-block h3 {
+      margin-bottom: 1rem;
+    }
+    .options button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      margin: 0.5rem 0;
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      border: 2px solid transparent;
+      background-color: #f3f4f6;
+      cursor: pointer;
+      font-size: 1rem;
+      position: relative;
+    }
+    .options button:hover {
+      background-color: #e5e7eb;
+    }
+    .options button.correct {
+      background-color: #d1fae5;
+      color: #065f46;
+      border-color: #10b981;
+    }
+    .options button.incorrect {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border-color: #ef4444;
+    }
+    .letter {
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      text-align: center;
+      border-radius: 50%;
+      font-weight: bold;
+      margin-right: 0.5rem;
+      color: white;
+    }
+    .A { background-color: #3b82f6; }
+    .B { background-color: #6366f1; }
+    .C { background-color: #10b981; }
+    .D { background-color: #f43f5e; }
+    .explanation {
+      background-color: #e0f2fe;
+      border-left: 5px solid #38bdf8;
+      padding: 1rem;
+      margin-top: 1rem;
+      display: none;
+    }
+    .score {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #1e40af;
+      margin-bottom: 2rem;
+    }
+    .reset-btn {
+      display: block;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      background-color: #3b82f6;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .reset-btn:hover {
+      background-color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>AI Tech Giants Knowledge Test</h1>
+</header>
+
+<div class="quiz-container" id="quiz"></div>
+<div class="score" id="score">Score: 0 / 12</div>
+<button class="reset-btn" onclick="location.reload()">Reset Quiz</button>
+
+<script>
+  const quizData = [
+    {
+      question: "According to Andy Jassy, CEO of Amazon, what stage are we at in the AI revolution?",
+      options: ["Middle of the second inning", "First batter, second strike of the first inning", "Top of the third inning", "Seventh inning stretch"],
+      answer: 1,
+      explanation: "Andy Jassy used a baseball analogy to describe how early we are in AI: 'first batter, second strike of the first inning'."
+    },
+    {
+      question: "What does Eric Sheridan identify as the three computing shifts in his framework?",
+      options: ["Desktop computing, laptop computing, and neural computing", "Web 1.0 (desktop computing), Web 2.0 (mobile computing), Web 3.0 (AI/spatial computing)", "Cloud computing, edge computing, and quantum computing", "Personal computing, enterprise computing, and hybrid computing"],
+      answer: 1,
+      explanation: "Sheridan outlines Web 1.0 (desktop), Web 2.0 (mobile), and Web 3.0 (AI/spatial) as three distinct shifts."
+    },
+    {
+      question: "What is Meta's capital intensity approaching, according to Eric Sheridan?",
+      options: ["25%", "30%", "40%", "55%"],
+      answer: 2,
+      explanation: "Eric Sheridan states Meta’s capex over revenue is approaching 40%."
+    },
+    {
+      question: "How much is Alphabet expected to spend on capex this year?",
+      options: ["$50 billion", "$75 billion", "$90 billion", "$110 billion"],
+      answer: 1,
+      explanation: "Alphabet is projected to spend $75 billion on capex."
+    },
+    {
+      question: "What unique characteristic of the AI shift does Sheridan highlight?",
+      options: ["The rapid global adoption rate", "The incumbents are winning rather than being disrupted", "Government regulation is more supportive", "Smaller companies are leading innovation"],
+      answer: 1,
+      explanation: "Unlike previous shifts, AI favors incumbents due to their capital power."
+    },
+    {
+      question: "When was ChatGPT released to the public, leading to widespread awareness?",
+      options: ["January 2020", "November 2022", "March 2023", "May 2024"],
+      answer: 1,
+      explanation: "ChatGPT was publicly released in November 2022."
+    },
+    {
+      question: "What are the three layers of AI development in Sheridan's framework?",
+      options: ["Hardware layer, software layer, user interface layer", "Research layer, development layer, implementation layer", "Infrastructure layer, platform layer, application layer", "Data layer, processing layer, interface layer"],
+      answer: 2,
+      explanation: "Sheridan describes AI in terms of infrastructure, platform, and application layers."
+    },
+    {
+      question: "What did Meta do with their capex and opex guidance recently?",
+      options: ["Lowered both capex and opex guidance", "Raised both capex and opex guidance", "Raised capex and lowered opex guidance", "Lowered capex and raised opex guidance"],
+      answer: 2,
+      explanation: "Meta raised its capex while reducing opex guidance."
+    },
+    {
+      question: "Where is AI already creating value for companies like Meta and Alphabet?",
+      options: ["Customer service chatbots", "Automation of advertising", "Supply chain optimization", "Employee productivity tools"],
+      answer: 1,
+      explanation: "AI is being used to create, place, and measure ads efficiently."
+    },
+    {
+      question: "What has happened to the rate of querying computers since ChatGPT emerged?",
+      options: ["It has decreased as people are overwhelmed by options", "It has remained steady but shifted to voice queries", "It has exploded/increased dramatically", "It has cycled through periods of growth and decline"],
+      answer: 2,
+      explanation: "There has been a surge in people asking questions via computers post-ChatGPT."
+    },
+    {
+      question: "What is the current growth rate of AWS?",
+      options: ["12%", "17%", "28%", "35%"],
+      answer: 1,
+      explanation: "AWS is reported to be growing at 17%."
+    },
+    {
+      question: "What major external factor has disrupted the AI narrative recently?",
+      options: ["Economic recession fears", "Tariff discussions", "Chip shortage concerns", "New regulatory frameworks"],
+      answer: 1,
+      explanation: "Tariff concerns have overtaken AI in investor conversations."
+    }
+  ];
+
+  const quizContainer = document.getElementById('quiz');
+  const scoreDisplay = document.getElementById('score');
+  let score = 0;
+
+  function renderQuiz() {
+    quizData.forEach((item, index) => {
+      const block = document.createElement('div');
+      block.className = 'question-block';
+      block.innerHTML = `<h3>Q${index + 1}. ${item.question}</h3>`;
+      const optionsDiv = document.createElement('div');
+      optionsDiv.className = 'options';
+
+      item.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        const letters = ['A', 'B', 'C', 'D'];
+        btn.innerHTML = `<span class="letter ${letters[i]}">${letters[i]}</span>${opt}`;
+        btn.onclick = function () {
+          if (btn.classList.contains('correct') || btn.classList.contains('incorrect')) return;
+
+          const buttons = optionsDiv.querySelectorAll('button');
+          buttons.forEach(b => b.disabled = true);
+
+          if (i === item.answer) {
+            btn.classList.add('correct');
+            score++;
+            scoreDisplay.textContent = `Score: ${score} / 12`;
+          } else {
+            btn.classList.add('incorrect');
+            buttons[item.answer].classList.add('correct');
+          }
+
+          explanationDiv.style.display = 'block';
+        };
+        optionsDiv.appendChild(btn);
+      });
+
+      const explanationDiv = document.createElement('div');
+      explanationDiv.className = 'explanation';
+      explanationDiv.textContent = item.explanation;
+
+      block.appendChild(optionsDiv);
+      block.appendChild(explanationDiv);
+      quizContainer.appendChild(block);
+    });
+  }
+
+  renderQuiz();
+</script>
+</body>
+</html>
